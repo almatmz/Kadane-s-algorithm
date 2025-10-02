@@ -2,7 +2,7 @@ package algorithms;
 import metrics.PerformanceTracker;
 import metrics.CountedIntArray;
 
-public class Kadanes_algorithm {
+public class Kadane {
 
     public static final class Result {
         public final long maxSum;
