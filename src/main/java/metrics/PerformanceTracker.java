@@ -34,29 +34,13 @@ public class PerformanceTracker {
     }
 
 
-    public long getElapsedNs() {
-        return endNs - startNs;
-    }
-
-
-    public long getMemoryDeltaBytes() {
-        return endUsedBytes - startUsedBytes;
-    }
-
-
 
     public void incComparisons() { comparisons++; }
     public void incArrayAccesses() { arrayAccesses++; }
-    public void incAssignments() { assignments++; }
-    public void incSwaps() { swaps++; }
-    public void incAllocations(long n) { allocations += n; }
 
 
     public long getComparisons() { return comparisons; }
     public long getArrayAccesses() { return arrayAccesses; }
-    public long getAssignments() { return assignments; }
-    public long getSwaps() { return swaps; }
-    public long getAllocations() { return allocations; }
 
 
     public void reset() {
