@@ -4,8 +4,6 @@ import metrics.PerformanceTracker;
 
 public final class Kadane {
 
-    private Kadane() {}
-
     public static class Result {
         public final int maxSum;
         public final int start;
