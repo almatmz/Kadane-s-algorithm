@@ -16,7 +16,17 @@ public class CountedIntArray {
         return arr[i];
     }
 
+    public void set(int i, int value) {
+        tracker.incArrayAccesses();
+        tracker.incAssignments();
+        arr[i] = value;
+    }
+
     public int length() {
         return arr.length;
+    }
+
+    public int[] getRawArray() {
+        return arr;
     }
 }
