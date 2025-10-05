@@ -7,9 +7,6 @@ public class PerformanceTracker {
 
     private long comparisons = 0;
     private long arrayAccesses = 0;
-    private long assignments = 0;
-    private long swaps = 0;
-    private long allocations = 0;
 
     private long startNs = 0;
     private long endNs = 0;
@@ -46,14 +43,10 @@ public class PerformanceTracker {
     public void reset() {
         comparisons = 0;
         arrayAccesses = 0;
-        assignments = 0;
-        swaps = 0;
-        allocations = 0;
         startNs = 0;
         endNs = 0;
         startUsedBytes = 0;
         endUsedBytes = 0;
     }
-
 
 }
