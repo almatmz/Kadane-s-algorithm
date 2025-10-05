@@ -1,59 +1,58 @@
 package algorithms;
+
 import metrics.PerformanceTracker;
-import metrics.CountedIntArray;
 
-public class Kadane {
+public final class Kadane {
 
-    public static final class Result {
-        public final long maxSum;
+    private Kadane() {}
+
+    public static class Result {
+        public final int maxSum;
         public final int start;
         public final int end;
 
-        public Result(long maxSum, int start, int end) {
+        public Result(int maxSum, int start, int end) {
             this.maxSum = maxSum;
             this.start = start;
             this.end = end;
         }
-
-        @Override
-        public String toString() {
-            return "Result{maxSum=" + maxSum + ", start=" + start + ", end=" + end + "}";
-        }
     }
 
     public static Result kadane(int[] arr, PerformanceTracker tracker) {
-        if (arr == null) throw new IllegalArgumentException("arr == null");
-        if (arr.length == 0) throw new IllegalArgumentException("empty array");
+        if (arr == null || arr.length == 0) {
+            return new Result(0, -1, -1);
+        }
+        if (arr.length == 1) {
+            return new Result(arr[0], 0, 0);
+        }
 
-        CountedIntArray a = new CountedIntArray(arr, tracker);
+        int maxSoFar = arr[0];
+        int maxEndingHere = arr[0];
+        int start = 0, tempStart = 0, end = 0;
 
-        long maxEndingHere = a.get(0);
-        long maxSoFar = maxEndingHere;
-        int start = 0, end = 0, s = 0;
-        tracker.incAssignments();
-        tracker.incAssignments();
+        if (tracker != null) {
+            tracker.incArrayAccesses();
+        }
 
-        for (int i = 1; i < a.length(); i++) {
-            int v = a.get(i);
+        for (int i = 1; i < arr.length; i++) {
+            if (tracker != null) tracker.incArrayAccesses();
 
-            tracker.incComparisons();
-            if (maxEndingHere + v < v) {
-                maxEndingHere = v;
-                s = i;
-                tracker.incAssignments();
+            if (maxEndingHere + arr[i] < arr[i]) {
+                maxEndingHere = arr[i];
+                tempStart = i;
             } else {
-                maxEndingHere = maxEndingHere + v;
-                tracker.incAssignments();
+                maxEndingHere += arr[i];
             }
 
-            tracker.incComparisons();
+            if (tracker != null) tracker.incComparisons();
+
             if (maxEndingHere > maxSoFar) {
                 maxSoFar = maxEndingHere;
-                start = s;
+                start = tempStart;
                 end = i;
-                tracker.incAssignments();
             }
         }
+
         return new Result(maxSoFar, start, end);
     }
 }
