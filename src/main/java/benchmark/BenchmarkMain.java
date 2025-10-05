@@ -9,8 +9,8 @@ public class BenchmarkMain {
         Options opt = new OptionsBuilder()
                 .include(KadaneBenchmark.class.getSimpleName())
                 .forks(1)
-                .warmupIterations(3)
-                .measurementIterations(5)
+                .warmupIterations(2)
+                .measurementIterations(2)
                 .build();
 
         new Runner(opt).run();

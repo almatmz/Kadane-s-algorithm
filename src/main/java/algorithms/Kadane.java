@@ -18,6 +18,10 @@ public final class Kadane {
 
     public static Result kadane(int[] arr, PerformanceTracker tracker) {
         if (arr == null || arr.length == 0) {
+            throw new IllegalArgumentException("Input array must not be null or empty");
+        }
+
+        if (arr == null || arr.length == 0) {
             return new Result(0, -1, -1);
         }
         if (arr.length == 1) {
